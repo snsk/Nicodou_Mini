@@ -1,0 +1,4 @@
+poor realtime chat app.
+node v0.6.6, socket.io v0.8.7
+
+It makes help for your simple understanding to socket.io.
