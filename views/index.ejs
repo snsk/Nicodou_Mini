@@ -32,5 +32,30 @@
  <div id="messageArea">
  <ul></ul>
  </div>
+
+<div id="nicoscreen" style="width:560px;height:349px"> </div>
+<script type="text/javascript">
+  
+  var obj = {
+  //基本情報が設定できます
+  "base":{
+  color:"black", //文字の色を指定します
+  speed:"normal", //文字が流れるスピードを指定します。slow/fast/normal 
+  interval:"normal",//文字が流れる間隔を指定します。slow/fast/normal
+  font_size:"30px", //フォントのサイズを指定します。
+  loop:true //文字が最後まで流れた後に、繰り返すかどうか　true/false
+  },
+  
+  //ここに、重ねるコメントを登録します。個数制限はありません。
+  "comments":[
+  "ねこかわゆす"
+  ]  
+  };
+
+  nicoscreen.set(obj);
+  nicoscreen.start();
+
+</script>
+
  </body>
 </html>
