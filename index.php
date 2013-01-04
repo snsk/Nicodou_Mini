@@ -1,5 +1,3 @@
 <?php
-
-printenv();
-
+	echo("Hello world");
 ?>
