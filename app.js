@@ -46,7 +46,7 @@ var socket = require('socket.io').listen(server);
 socket.on('connection', function(client) {
     client.on('message', function(event){
    // クライアントからのメッセージをコンソールに出力
-	console.log(event.message);
+	console.log("app.js:" + event.message);
    // 送信元へメッセージ送信
 	client.emit('message', event.message);
    // 送信元以外の全てのクライアントへメッセージ送信
