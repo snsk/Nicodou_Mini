@@ -45,4 +45,12 @@ socket.on('connection', function(client) {
    // 送信元以外の全てのクライアントへメッセージ送信
 	client.broadcast.emit('message', event.message);
     });
+    client.on('change', function(event){
+   // クライアントからのメッセージをコンソールに出力
+	console.log("app.js:" + event.message);
+   // 送信元へメッセージ送信
+	client.emit('change', event.message);
+   // 送信元以外の全てのクライアントへメッセージ送信
+	client.broadcast.emit('change', event.message);
+    });
 });
