@@ -12,7 +12,7 @@
  var socket = new io.connect("/");
 
  socket.on("connect", function(){
-     $("#transportName").text("connect via " + socket.socket.transport.name);// 接続時に接続方式表示
+     $("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
  });
 
  socket.on("message", function(message){
@@ -28,7 +28,7 @@
  </head>
  
 <body>
- <div id="transportName"></div>
+ <div id="transportName">connecting...</div>
  <input id="msg">
  <input id="submitButton" type="button" value="submit!">
  <ul></ul>
