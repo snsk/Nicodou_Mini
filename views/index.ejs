@@ -15,17 +15,21 @@
       });
       
       socket.on("message", function(message){ //ここで同期
-      console.log("client:" + message);
+      console.log("message:" + message);
       addComment(message);
+      });
+ 
+      socket.on("change", function(message){ //ここで同期
+      console.log("change:" + message);
       change(message);
       });
-      
+     
       $("#submitButton").click(function(event){
       socket.emit("message", {message: $("#msg").val()});// 入力メッセージをサーバへ
       });
 
       $("#change").click(function(event){
-      socket.emit("message", {message: $("#videoid").val()});// 入力メッセージをサーバへ
+      socket.emit("change", {message: $("#videoid").val()});// 入力メッセージをサーバへ
       });
 
       });
