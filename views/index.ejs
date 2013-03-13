@@ -14,14 +14,20 @@
       $("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
       });
       
-      socket.on("message", function(message){
+      socket.on("message", function(message){ //ここで同期
       console.log("client:" + message);
       addComment(message);
+      change(message);
       });
       
       $("#submitButton").click(function(event){
       socket.emit("message", {message: $("#msg").val()});// 入力メッセージをサーバへ
       });
+
+      $("#change").click(function(event){
+      socket.emit("message", {message: $("#videoid").val()});// 入力メッセージをサーバへ
+      });
+
       });
     </script>
   </head>
@@ -35,7 +41,7 @@
     <input id="msg" size="50"></input>
     <input id="submitButton" type="button" value="submit!"></input><br>
     <input id="videoid" size="50" value="2MJoclZCsbo"></input>
-    <input id="change" type="button" value="change" onclick="change();" ></input>
+    <input id="change" type="button" value="change"></input>
     <br>
     <div id="nicoscreen" style="width:560px;height:349px"> 
     	 <div id="ytapiplayer">
