@@ -56,15 +56,15 @@
     <script type="text/javascript">
     var params = { allowScriptAccess: "always" };
     var atts = { id: "myytplayer" };
-    swfobject.embedSWF("http://www.youtube.com/v/5C3RURPgLfs?enablejsapi=1&playerapiid=ytplayer", 
+    swfobject.embedSWF("http://www.youtube.com/v/lCuFpAo13uo?enablejsapi=1&playerapiid=ytplayer", 
                        "ytapiplayer", "560", "349", "8", null, null, params, atts);
  
     function onYouTubePlayerReady(playerId) {
       ytplayer = document.getElementById("myytplayer");
     }
  
-    function change(){
-        ytplayer.loadVideoById( $("#videoid").val(), 0 );
+    function change(message){
+        ytplayer.loadVideoById( $(message).val(), 0 );
     }
   </script>
     
