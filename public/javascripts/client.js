@@ -38,8 +38,7 @@ function change(message){
     ytplayer.loadVideoById(message, 0 );
 }
 
-var obj = {
-    //基本情報が設定できます
+var nicoscreenSettingInfo = {
     "base":{
 	color:"white", //文字の色を指定します
 	speed:"slow", //文字が流れるスピードを指定します。slow/fast/normal 
@@ -48,15 +47,13 @@ var obj = {
 	loop:false //文字が最後まで流れた後に、繰り返すかどうか　true/false
     },
     "comments":[
-	
+
     ]
 };
-
-nicoscreen.set(obj);
+nicoscreen.set(nicoscreenSettingInfo);
 nicoscreen.start();
 
 function addComment(msg){
-    console.log("add!!:" + msg);
     var str = $(msg).val();
     nicoscreen.add(msg);
     $("#msg").val("");
