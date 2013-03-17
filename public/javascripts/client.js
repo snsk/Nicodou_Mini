@@ -58,3 +58,9 @@ function addComment(msg){
     nicoscreen.add(msg);
     $("#msg").val("");
 }
+
+require('nodefly').profile(
+    '7b8d021e-85a2-4f22-9f67-f4ba05d44d5b',
+    [APPLICATION_NAME,'Heroku'],
+    options // optional
+);
