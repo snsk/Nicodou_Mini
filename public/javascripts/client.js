@@ -38,6 +38,12 @@ function change(message){
     ytplayer.loadVideoById(message, 0 );
 }
 
+function addComment(msg){
+    var str = $(msg).val();
+    nicoscreen.add(msg);
+    $("#msg").val("");
+}
+
 var nicoscreenSettingInfo = {
     "base":{
 	color:"white", //文字の色を指定します
@@ -52,15 +58,3 @@ var nicoscreenSettingInfo = {
 };
 nicoscreen.set(nicoscreenSettingInfo);
 nicoscreen.start();
-
-function addComment(msg){
-    var str = $(msg).val();
-    nicoscreen.add(msg);
-    $("#msg").val("");
-}
-
-require('nodefly').profile(
-    '7b8d021e-85a2-4f22-9f67-f4ba05d44d5b',
-    ['ethmusicaloop','Heroku'],
-    options // optional
-);
