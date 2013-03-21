@@ -1,3 +1,5 @@
+//client
+
 $(function(){
     var socket = new io.connect("/");
     
@@ -5,22 +7,22 @@ $(function(){
 	$("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
     });
     
-    socket.on("message", function(message){ //ここで同期
+    socket.on("message", function(message){
 	console.log("message:" + message);
 	addComment(message);
     });
     
-    socket.on("change", function(message){ //ここで同期
+    socket.on("change", function(message){
 	console.log("change:" + message);
 	change(message);
     });
     
     $("#submitButton").click(function(event){
-	socket.emit("message", {message: $("#msg").val()});// 入力メッセージをサーバへ
+	socket.emit("message", {message: $("#msg").val()});
     });
 
     $("#change").click(function(event){
-	socket.emit("change", {message: $("#videoid").val()});// 入力メッセージをサーバへ
+	socket.emit("change", {message: $("#videoid").val()});
     });
 
 });
