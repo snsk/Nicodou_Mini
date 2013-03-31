@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+#user{
+    border-top:1px solid #fff;
+    border-bottom:1px solid #ddd;
+    padding:15px;
+    margin-bottom:0;
+    background:#eee;
+
+}
+
+#parent{
+       width:500px;
+    border:1px solid #ccc;   
+
+}
+textarea{padding:5px;}

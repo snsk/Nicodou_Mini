@@ -6,12 +6,12 @@ $(function(){
     socket.on("connect", function(){
 	$("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
     });
-    
+
     socket.on("message", function(message){
 	console.log("message:" + message);
 	addComment(message);
     });
-    
+
     socket.on("change", function(message){
 	console.log("change:" + message);
 	change(message);
@@ -60,3 +60,20 @@ var nicoscreenSettingInfo = {
 };
 nicoscreen.set(nicoscreenSettingInfo);
 nicoscreen.start();
+
+//キープレスイベント
+$('#text').live('keypress',function (e) {
+    //KeyCode定数を設定
+    if(e.keyCode == 13) {
+        box = $(this);
+        t_val = $(box).val();
+
+         //未入力の場合は受け付けない
+        if(t_val.length > 0) {
+            //打ち込んだ内容が反映されるボックスを生成
+            $(this).prev().append('<div id="user">'+t_val+'</div>');
+            $(box).val("");
+        }
+        e.preventDefault();
+    }
+});
