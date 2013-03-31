@@ -25,12 +25,4 @@ a {
 
 }
 
-#nicoscreen{
-    pointer-events: none;
-}
-
-#ytapiplayer{
-    pointer-events: auto;
-}
-
 textarea{padding:5px;}
