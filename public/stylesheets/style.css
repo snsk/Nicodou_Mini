@@ -13,11 +13,12 @@ a {
     padding:15px;
     margin-bottom:0;
     background:#eee;
-
+    font-size:80%;
 }
 
 #parent{
-       width:500px;
+    position:absolute; top:10px; left:600px;
+    width:500px;
     border:1px solid #ccc;   
 
 }
