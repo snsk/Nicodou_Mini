@@ -52,7 +52,7 @@ var nicoscreenSettingInfo = {
 	color:"white", //文字の色を指定します
 	speed:"slow", //文字が流れるスピードを指定します。slow/fast/normal 
 	interval:"normal",//文字が流れる間隔を指定します。slow/fast/normal
-	font_size:"30px", //フォントのサイズを指定します。
+	font_size:"20px", //フォントのサイズを指定します。
 	loop:false //文字が最後まで流れた後に、繰り返すかどうか　true/false
     },
     "comments":[
