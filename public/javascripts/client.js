@@ -43,7 +43,7 @@ function change(message){
 function addComment(msg){
     var str = $(msg).val();
     nicoscreen.add(msg);
-    $("#text").next().append('<div id="user">'+ msg +'</div>');
+    $("#text").prev().prepend('<div id="user">'+ msg +'</div>');
     $("#msg").val("");
 }
 
