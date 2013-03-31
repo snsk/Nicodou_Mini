@@ -24,4 +24,9 @@ a {
     overflow: scroll;
 
 }
+
+#nicoscreen{
+    pointer-events: none;
+}
+
 textarea{padding:5px;}
