@@ -10,16 +10,18 @@ a {
 #user{
     border-top:1px solid #fff;
     border-bottom:1px solid #ddd;
-    padding:15px;
+    padding:5px;
     margin-bottom:0;
     background:#eee;
     font-size:80%;
 }
 
 #parent{
-    position:absolute; top:10px; left:600px;
+    position:absolute; top:240px; left:600px;
     width:500px;
     border:1px solid #ccc;   
+    height: 350px;
+    overflow: scroll;
 
 }
 textarea{padding:5px;}
