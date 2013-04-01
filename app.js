@@ -52,6 +52,10 @@ socket.on('connection', function(client) {
 	client.emit('change', event.message);
 	client.broadcast.emit('change', event.message);
     });
-
+    client.on('event', function(event){
+	console.log("app.js:" + event.message);
+	client.emit('event', event.message);
+	client.broadcast.emit('event', event.message);
+    });
 
 });

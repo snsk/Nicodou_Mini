@@ -1,39 +1,53 @@
 //client
 
-$(function(){
-    var socket = new io.connect("/");
-    
-    socket.on("connect", function(){
-	$("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
-    });
+var socket = new io.connect("/");
 
-    socket.on("message", function(message){
-	console.log("message:" + message);
-	addComment(message);
-    });
-
-    socket.on("change", function(message){
-	console.log("change:" + message);
-	change(message);
-    });
-    
-    $("#submitButton").click(function(event){
-	socket.emit("message", {message: $("#msg").val()});
-    });
-
-    $("#change").click(function(event){
-	socket.emit("change", {message: $("#videoid").val()});
-    });
-
+//イベント受信時
+socket.on("connect", function(){
+    $("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
 });
+
+socket.on("message", function(message){
+    console.log("message:" + message);
+    addComment(message);
+});
+
+socket.on("change", function(message){
+    console.log("change:" + message);
+    change(message);
+});
+
+socket.on("event", function(status){
+    console.log("event.stat:" + status.newStatus);
+    console.log("event.time:" + status.currentTime.toString());
+    console.log("local.stat:" + ytplayer.getPlayerState());
+    if(ytplayer.getPlayerState() != -1){
+	ytplayer.seekTo(status.currentTime, true);
+	console.log("seek!");
+    }
+});
+
+
+//イベントリスナ登録
+$("#submitButton").click(function(event){
+    socket.emit("message", {message: $("#msg").val()});
+});
+
+$("#change").click(function(event){
+    socket.emit("change", {message: $("#videoid").val()});
+});
+
 
 var ytapiplayer = {
     params: { 
-	quality: "best",
 	allowScriptAccess: "always",
 	wmode: "transparent",
     },
-    atts: { id: "myytplayer" }
+    atts: { id: "myytplayer" },
+    status: {
+	newStatus: 0,
+	currentTime: 0,
+    }
 };
 
 swfobject.embedSWF("http://www.youtube.com/v/kvnV0qc9lRI?enablejsapi=1&playerapiid=ytplayer", 
@@ -41,7 +55,16 @@ swfobject.embedSWF("http://www.youtube.com/v/kvnV0qc9lRI?enablejsapi=1&playerapi
 
 function onYouTubePlayerReady(playerId) {
     ytplayer = document.getElementById("myytplayer");
+    ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
 }
+
+function onytplayerStateChange(newState) {
+    ytapiplayer.status.newStatus = newState;
+    ytapiplayer.status.currentTime = ytplayer.getCurrentTime();
+    socket.emit("event", {message: ytapiplayer.status});
+}
+
+
 
 function change(message){
     ytplayer.loadVideoById(message, 0 );
@@ -68,4 +91,3 @@ var nicoscreenSettingInfo = {
 };
 nicoscreen.set(nicoscreenSettingInfo);
 nicoscreen.start();
-
