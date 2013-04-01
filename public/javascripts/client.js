@@ -30,13 +30,12 @@ socket.on("event", function(status){
 
 //イベントリスナ登録
 $("#submitButton").click(function(event){
-    socket.emit("message", {message: $("#msg").val()});
+    socket.emit("message", {message: $("#msg-prefix").val() + $("#msg").val()});
 });
 
 $("#change").click(function(event){
     socket.emit("change", {message: $("#videoid").val()});
 });
-
 
 var ytapiplayer = {
     params: { 
@@ -63,8 +62,6 @@ function onytplayerStateChange(newState) {
     ytapiplayer.status.currentTime = ytplayer.getCurrentTime();
     socket.emit("event", {message: ytapiplayer.status});
 }
-
-
 
 function change(message){
     ytplayer.loadVideoById(message, 0 );

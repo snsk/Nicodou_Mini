@@ -14,11 +14,12 @@
     　激しくα以前。connecting... が ready! になるまでちょっとまってね。
     <hr>
     <div id="transportName">connecting...</div>
+    Prefix(optional)<input id="msg-prefix" size="10"></input>
     <input id="msg" size="50"></input>
     <input id="submitButton" type="button" value="コメント"></input>
     <br>流したいメッセージを入力してください<br>
  
-   <input id="videoid" size="50" value="2MJoclZCsbo"></input>
+   <input id="videoid" size="30" value="2MJoclZCsbo"></input>
     <input id="change" type="button" value="change"></input> 
     <br>youtube動画のIDを入力してください(watch?v= に続くID
     <br>
@@ -28,5 +29,17 @@
     <div id="nicoscreen"></div>
     <div id="parent"></div>
     <script type="text/javascript" src="/javascripts/client.js"></script>
+    <hr>
+    現在の仕様
+　　<ul>
+      <li>Google Chromeのみで猿的に動作確認しています</li>
+      <li>チャットのログは今居るメンバーにしか同期されません</li>
+      <li>同期するプレイヤーのイベントは、楽曲の変更とシーク、のみです</li>
+      <ul>
+	<li>シークは”現在再生しているひと”のみ同期されます</li>
+	<li>楽曲の変更(change)は今居るメンバー全員のブラウザで同期して再生が開始されます</li>
+      </ul>
+      <li>同じ曲を繰り返す場合は再度同じIDで部屋主がchangeしてください</li>
+    </ul>
   </body>
 </html>
