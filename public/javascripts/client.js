@@ -27,6 +27,10 @@ socket.on("event", function(status){
     }
 });
 
+socket.on("count", function(message){
+    console.log("count:" + message.toString());
+    $("#count").text("Peoples:" + message.toString());
+});
 
 //イベントリスナ登録
 $("#submitButton").click(function(event){

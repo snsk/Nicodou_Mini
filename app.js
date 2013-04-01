@@ -14,6 +14,7 @@ var express = require('express')
   , path = require('path');
 
 var app = express();
+var peoples = 0;
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -42,6 +43,12 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 var socket = require('socket.io').listen(server);
 socket.on('connection', function(client) {
+
+    peoples++;
+    console.log("app.js count:" + peoples);
+    client.emit('count', peoples);
+    client.broadcast.emit('count', peoples);
+
     client.on('message', function(event){
 	console.log("app.js:" + event.message);
 	client.emit('message', event.message);
@@ -57,5 +64,12 @@ socket.on('connection', function(client) {
 	client.emit('event', event.message);
 	client.broadcast.emit('event', event.message);
     });
+    client.on('disconnect', function() {
+	peoples--;
+	console.log("app.js count:" + peoples);
+	client.emit('count', peoples);
+	client.broadcast.emit('count', peoples);
+    });
 
 });
+
