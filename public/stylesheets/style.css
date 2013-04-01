@@ -17,12 +17,27 @@ a {
 }
 
 #parent{
-    position:absolute; top:240px; left:600px;
+    position:absolute; top:220px; left:600px;
     width:500px;
     border:1px solid #ccc;   
     height: 350px;
     overflow: scroll;
 
 }
+
+#ytapiplayer{
+    z-index:10;
+    position:absolute; top:240px; left:20px;
+}
+
+#nicoscreen{
+    z-index:0;
+    border:none;
+    width:558px;
+    height:300px;
+    position:absolute; top:-340px; left:0px;
+};
+
+
 
 textarea{padding:5px;}

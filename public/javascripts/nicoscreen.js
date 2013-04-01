@@ -97,7 +97,7 @@ r9.NicoScreen = {
 		var elm = $("#nicoscreen");
 		this.elm = elm;
 		this.elm.css("position", "relative");
-		this.elm.css("border", "solid 1px gray");
+		this.elm.css("border", "none");
 		this.elm.css("overflow", "hidden");
 		this.elm.bind("selectstart",function(){return false;});
 		this.elm.bind("mousedown",function(){return false;});

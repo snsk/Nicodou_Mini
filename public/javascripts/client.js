@@ -27,10 +27,17 @@ $(function(){
 
 });
 
-var params = { allowScriptAccess: "always" };
-var atts = { id: "myytplayer" };
-swfobject.embedSWF("http://www.youtube.com/v/lCuFpAo13uo?enablejsapi=1&playerapiid=ytplayer", 
-                   "ytapiplayer", "560", "349", "8", null, null, params, atts);
+var ytapiplayer = {
+    params: { 
+	quality: "best",
+	allowScriptAccess: "always",
+	wmode: "transparent",
+    },
+    atts: { id: "myytplayer" }
+};
+
+swfobject.embedSWF("http://www.youtube.com/v/kvnV0qc9lRI?enablejsapi=1&playerapiid=ytplayer", 
+                   "ytapiplayer", "560", "349", "8", null, null, ytapiplayer.params, ytapiplayer.atts);
 
 function onYouTubePlayerReady(playerId) {
     ytplayer = document.getElementById("myytplayer");
@@ -51,7 +58,7 @@ var nicoscreenSettingInfo = {
     "base":{
 	color:"white", //文字の色を指定します
 	speed:"slow", //文字が流れるスピードを指定します。slow/fast/normal 
-	interval:"normal",//文字が流れる間隔を指定します。slow/fast/normal
+	interval:"fast",//文字が流れる間隔を指定します。slow/fast/normal
 	font_size:"20px", //フォントのサイズを指定します。
 	loop:false //文字が最後まで流れた後に、繰り返すかどうか　true/false
     },
