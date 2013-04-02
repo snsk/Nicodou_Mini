@@ -29,8 +29,8 @@
       <input id="submitButton" class="submit" type="button" value="コメント"></input>
     </span>
     <br>
-    <span class="tTip" title="youtube動画のIDを入力してください(watch?v= に続くID)">
-      Video ID:<input id="videoid" class="text" size="30" value="2MJoclZCsbo"></input>
+    <span class="tTip" title="youtube動画のIDを入力してください(watch?v= に続くID) お試し用のIDが既に入力されています。">
+      Video ID:<input id="videoid" class="text" size="30" value="TaPXShP9D0Y"></input>
       <input id="change" class="submit" type="button" value="change"></input> 
     <br>
     <br>
@@ -58,10 +58,12 @@
 　　<ul>
       <li>Google Chromeのみで猿的に動作確認しています</li>
       <li>チャットのログは今居るメンバーにしか同期されません</li>
-      <li>同期するプレイヤーのイベントは、楽曲の変更とシーク、のみです</li>
+      <li>同期するプレイヤーのイベントは、<b>楽曲の変更とシークのみ</b>、です</li>
       <ul>
 	<li>シークは”現在再生しているひと”のみ同期されます</li>
 	<li>楽曲の変更(change)は今居るメンバー全員のブラウザで同期して再生が開始されます</li>
+	<li>後から入ってきたメンバーが同期するには誰かが(change)する必要があります</li>
+	<li>セッションを管理していません</li>
       </ul>
       <li>同じ曲を繰り返す場合は再度同じIDで部屋主がchangeしてください</li>
     </ul>

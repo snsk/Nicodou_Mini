@@ -65,7 +65,7 @@ var ytapiplayer = {
 	newStatus: 0,
 	currentTime: 0,
     },
-    sync: function(){
+    sync: function(){ //It does not use anyware, exam imp.
 	this.status.newStatus = ytplayer.getPlayerState();
 	this.status.currentTime = ytplayer.getCurrentTime();
 	this.status.videoId = ytplayer.getVideoId();
@@ -76,7 +76,7 @@ var ytapiplayer = {
     }
 };
 
-swfobject.embedSWF("http://www.youtube.com/v/kvnV0qc9lRI?enablejsapi=1&playerapiid=ytplayer", 
+swfobject.embedSWF("http://www.youtube.com/v/ylLzyHk54Z0?enablejsapi=1&playerapiid=ytplayer", 
                    "ytapiplayer", "560", "349", "8", null, null, ytapiplayer.params, ytapiplayer.atts);
 
 function onYouTubePlayerReady(playerId) {
@@ -94,7 +94,7 @@ function change(message){
 
 function addComment(msg){
     nicoscreen.add(msg);
-    $("#parent").prepend('<div id="user">'+ msg +'</div>');
+    $("#parent").prepend('<div id="user">'+ msg + "<div style='text-align:right;font-size:xx-small;'>" + new Date().toLocaleString() + '</div>'+ '</div>');
 }
 
 var nicoscreenSettingInfo = {
