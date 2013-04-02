@@ -20,10 +20,11 @@ socket.on("change", function(message){
 socket.on("event", function(status){
     console.log("event.stat:" + status.newStatus);
     console.log("event.time:" + status.currentTime.toString());
+    console.log("event.id:" + status.videoId);
     console.log("local.stat:" + ytplayer.getPlayerState());
     if(ytplayer.getPlayerState() != -1){
 	ytplayer.seekTo(status.currentTime, true);
-	console.log("seek!");
+	console.log("seek by remote!");
     }
 });
 
@@ -41,6 +42,18 @@ $("#change").click(function(event){
     socket.emit("change", {message: $("#videoid").val()});
 });
 
+function onytplayerStateChange(newState) {
+    ytapiplayer.status.newStatus = newState;
+    ytapiplayer.status.currentTime = ytplayer.getCurrentTime();
+    ytapiplayer.status.videoId = ytplayer.getVideoId();
+
+    socket.emit("event", {message: ytapiplayer.status});
+    if(newState === 0){//In play complete, loop. But, this version has problem that clear video buffer, means every time full load the video.
+	ytplayer.stopVideo();
+    }
+}
+
+//プレーヤーオブジェクト
 var ytapiplayer = {
     params: { 
 	allowScriptAccess: "always",
@@ -48,8 +61,18 @@ var ytapiplayer = {
     },
     atts: { id: "myytplayer" },
     status: {
+	videoId: "",
 	newStatus: 0,
 	currentTime: 0,
+    },
+    sync: function(){
+	this.status.newStatus = ytplayer.getPlayerState();
+	this.status.currentTime = ytplayer.getCurrentTime();
+	this.status.videoId = ytplayer.getVideoId();
+/*	console.log("sync.status: " + this.status.newStatus);
+	console.log("sync.currentTime: " + this.status.currentTime);
+	console.log("sync.videoId: " + this.status.videoId);
+*/
     }
 };
 
@@ -59,12 +82,10 @@ swfobject.embedSWF("http://www.youtube.com/v/kvnV0qc9lRI?enablejsapi=1&playerapi
 function onYouTubePlayerReady(playerId) {
     ytplayer = document.getElementById("myytplayer");
     ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
-}
-
-function onytplayerStateChange(newState) {
-    ytapiplayer.status.newStatus = newState;
-    ytapiplayer.status.currentTime = ytplayer.getCurrentTime();
-    socket.emit("event", {message: ytapiplayer.status});
+    ytplayer.getVideoId = function(){ //why does not exist with Youtube JS API's...
+	return ytplayer.getVideoUrl().split("&v=")[1];
+    };
+    ytapiplayer.sync();
 }
 
 function change(message){
@@ -72,10 +93,8 @@ function change(message){
 }
 
 function addComment(msg){
-    var str = $(msg).val();
     nicoscreen.add(msg);
     $("#parent").prepend('<div id="user">'+ msg +'</div>');
-    $("#msg").val("");
 }
 
 var nicoscreenSettingInfo = {

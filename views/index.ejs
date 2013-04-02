@@ -15,7 +15,7 @@
     <hr>
     <span id="transportName">connecting...</span>　<span id="count">Peoples:0 </span><br>
     Prefix(optional)<input id="msg-prefix" size="10"></input>
-    <input id="msg" size="50"></input>
+    <input id="msg" size="50" onkeydown="send();"></input>
     <input id="submitButton" type="button" value="コメント"></input>
     <br>流したいメッセージを入力してください<br>
  
@@ -29,6 +29,17 @@
     <div id="nicoscreen"></div>
     <div id="parent"></div>
     <script type="text/javascript" src="/javascripts/client.js"></script>
+    <script type="text/javascript">
+      function send(){
+          console.log(event.keyCode);
+          if(event.keyCode==13){
+              $("#submitButton").click();
+              $("#msg").val("");
+          }
+      }
+    </script>
+
+
     <hr>
     現在の仕様
 　　<ul>
