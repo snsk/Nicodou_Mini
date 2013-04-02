@@ -3,10 +3,17 @@
   <head>
     <title>youtube動画をみんなで観てわいわいやるやつ</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />    
+    <link rel='stylesheet' href='/stylesheets/tip.css' />    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/javascripts/nicoscreen.js"></script>
-    <script type="text/javascript" src="/javascripts/swfobject.js"></script>    
+    <script type="text/javascript" src="/javascripts/swfobject.js"></script> 
+    <script type="text/javascript" src="/javascripts/jquery.betterTooltip.js"></script>   
+    <script type="text/javascript">
+      $(document).ready(function(){
+      $('.tTip').betterTooltip({speed: 300, delay: 500});
+      });
+    </script>
   </head>
   
   <body>
@@ -14,15 +21,20 @@
     　激しくα以前。connecting... が ready! になるまでちょっとまってね。
     <hr>
     <span id="transportName">connecting...</span>　<span id="count">Peoples:0 </span><br>
-    Prefix(optional)<input id="msg-prefix" size="10"></input>
-    <input id="msg" size="50" onkeydown="send();"></input>
-    <input id="submitButton" type="button" value="コメント"></input>
-    <br>流したいメッセージを入力してください<br>
- 
-   <input id="videoid" size="30" value="2MJoclZCsbo"></input>
-    <input id="change" type="button" value="change"></input> 
-    <br>youtube動画のIDを入力してください(watch?v= に続くID
+    <span class="tTip" title="ニックネームなど常にメッセージの先頭に付けたい文字列があれば入力してください">
+      Prefix(optional)<input id="msg-prefix" class="text"size="10"></input>
+    </span>
+    <span class="tTip" title="流したいメッセージを入力してください(Enterで送信)">
+      <input id="msg" class="text" size="50" onkeydown="send();"></input>
+      <input id="submitButton" class="submit" type="button" value="コメント"></input>
+    </span>
+    <span class="tTip" title="youtube動画のIDを入力してください(watch?v= に続くID)">
+      <input id="videoid" class="text" size="30" value="2MJoclZCsbo"></input>
+      <input id="change" class="submit" type="button" value="change"></input> 
     <br>
+    <br>
+    </span>
+
     <div id="ytapiplayer">
       You need Flash player 8+ and JavaScript enabled to view this video.
     </div>
