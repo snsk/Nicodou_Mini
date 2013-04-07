@@ -41,6 +41,13 @@
     $("#change").click(function(event){
 	socket.emit("change", {message: $("#videoid").val()});
     });
+
+    $("#msg").keydown(function(event){
+        if(event.keyCode == 13){
+            $("#submitButton").click();
+            $("#msg").val("");
+        }
+    });
    
     var onytplayerStateChange = function(newState) {
 	ytapiplayer.status.newStatus = newState;
