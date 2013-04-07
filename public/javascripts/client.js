@@ -1,9 +1,8 @@
-$(function() {
 //client
+(function() {
 
     var socket = new io.connect("/");
-
-    //イベント受信時
+    //receive event
     socket.on("connect", function(){
 	$("#transportName").text("ready!:" + socket.socket.transport.name);// 接続時に接続方式表示
     });
@@ -34,7 +33,7 @@ $(function() {
 	$("#count").text("Peoples:" + message.toString());
     });
     
-    //イベントリスナ登録
+    //regist event listenner
     $("#submitButton").click(function(event){
 	socket.emit("message", {message: $("#msg-prefix").val() + $("#msg").val()});
     });
@@ -54,7 +53,7 @@ $(function() {
 	}
     }
 
-//プレーヤーオブジェクト
+    //player object setting.
     var ytapiplayer = {
 	params: { 
 	    allowScriptAccess: "always",
@@ -76,40 +75,42 @@ $(function() {
 	    */
 	}
     };
-    
+
     swfobject.embedSWF("http://www.youtube.com/v/ylLzyHk54Z0?enablejsapi=1&playerapiid=ytplayer", 
                        "ytapiplayer", "560", "349", "8", null, null, ytapiplayer.params, ytapiplayer.atts);
-});
 
-function onYouTubePlayerReady(playerId) {
-    ytplayer = document.getElementById("myytplayer");
-    ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
-    ytplayer.getVideoId = function(){ //why does not exist with Youtube JS API's...
-	return ytplayer.getVideoUrl().split("&v=")[1];
+    window.onYouTubePlayerReady = function(playerId) {
+	ytplayer = document.getElementById("myytplayer");
+	ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+	ytplayer.getVideoId = function(){ //why does not exist with Youtube JS API's...
+	    return ytplayer.getVideoUrl().split("&v=")[1];
+	};
+	ytapiplayer.sync();
+    }
+
+    var change = function(message){
+	ytplayer.loadVideoById(message, 0 );
+    }
+
+    var addComment = function(msg){
+	nicoscreen.add(msg);
+	$("#parent").prepend('<div id="user">'+ msg + "<div style='text-align:right;font-size:xx-small;'>" + new Date().toLocaleString() + '</div>'+ '</div>');
+    }
+
+    var nicoscreenSettingInfo = {
+	"base":{
+	    color:"white", //define text color
+	    speed:"slow", //slow/fast/normal 
+	    interval:"fast",//slow/fast/normal
+	    font_size:"20px", 
+	    loop:false
+	},
+	"comments":[
+	    
+	]
     };
-    ytapiplayer.sync();
-}
 
-function change(message){
-    ytplayer.loadVideoById(message, 0 );
-}
+    nicoscreen.set(nicoscreenSettingInfo);
+    nicoscreen.start();
 
-function addComment(msg){
-    nicoscreen.add(msg);
-    $("#parent").prepend('<div id="user">'+ msg + "<div style='text-align:right;font-size:xx-small;'>" + new Date().toLocaleString() + '</div>'+ '</div>');
-}
-
-var nicoscreenSettingInfo = {
-    "base":{
-	color:"white", //文字の色を指定します
-	speed:"slow", //文字が流れるスピードを指定します。slow/fast/normal 
-	interval:"fast",//文字が流れる間隔を指定します。slow/fast/normal
-	font_size:"20px", //フォントのサイズを指定します。
-	loop:false //文字が最後まで流れた後に、繰り返すかどうか　true/false
-    },
-    "comments":[
-
-    ]
-};
-nicoscreen.set(nicoscreenSettingInfo);
-nicoscreen.start();
+})();
