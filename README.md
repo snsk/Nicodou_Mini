@@ -1,7 +1,7 @@
 nicodo-mini
 ===========
 
-Nico Nico Douga clone to use in small groups.  
+Nico Nico Douga clone for use in small groups.  
 Works on Heoku Ceder stack, nodejs.  
 
 ejs@0.8.3  
